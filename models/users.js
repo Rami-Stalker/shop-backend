@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+onst mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
     name: {
@@ -31,7 +31,6 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "user",
     },
-
 });
 
 const User = mongoose.model("User", userSchema);

@@ -6,7 +6,7 @@ const authRouter = require("./routers/auth");
 
 // INIT
 const app = express();
-const DB = "mongodb+srv://mohRamy:moha242@mmed9336@cluster0.yrtkhjc.mongodb.net/?retryWrites=true&w=majority";
+const DB = "mongodb+srv://mohammed:moha242@mmed9336@cluster0.zkwhbo4.mongodb.net/?retryWrites=true&w=majority";
 
 // middleware
 app.use(express.json());
