@@ -47,11 +47,12 @@ mongoose
         console.log(e);
     });
 
-const port = process.env.PORT || 3000;
 
 app.get('/products', (req, res, next)=>{
     res.json({'name':'comunter','color':'black'})
 })
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, ()=>{
     console.log("it is working");
