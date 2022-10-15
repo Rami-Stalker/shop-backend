@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const adminRouter = require("./routers/admin");
 // IMPORTS FROM OTHER FILES
 const authRouter = require("./routers/auth");
+const productRouter = require("./routers/product");
 
 // INIT
 const app = express();
@@ -13,6 +14,7 @@ const DB = 'mongodb+srv://mohammedramydaly:moha242mmed9336@cluster0.h2bdlvl.mong
 app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 
 // Connections
 mongoose

@@ -1,4 +1,3 @@
-const e = require("express");
 const express = require("express");
 const admin = require("../middlewares/admin");
 const Product = require("../models/product");
