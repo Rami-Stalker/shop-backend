@@ -57,4 +57,5 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
     }
 });
 
+
 module.exports = productRouter;
