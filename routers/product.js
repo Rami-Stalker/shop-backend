@@ -35,21 +35,21 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
         const { id, rating } = req.body;
         let product = await Product.findById(id);
 
-        // If you did preference before
+        // if you did rated before
         for (let i = 0; i < product.ratings.length; i++) {
             if (product.ratings[i].userId == req.user) {
-                product.ratings.splice(i, 1); // To delete your previous preferences
+                product.ratings.splice(i, 1); // to delete your breviuos rating
                 break;
             }
         }
-
-        // Add your new preference
+        
+        // your new rating
         const ratingSchema = {
             userId: req.user,
             rating,
         };
 
-        product.ratings.push(ratingSchema); // add to product.ratings like add in dart
+        product.ratings.push(ratingSchema);
         product = await product.save();
         res.json(product);
     } catch (e) {

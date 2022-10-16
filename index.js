@@ -34,32 +34,4 @@ app.listen(PORT, () => {
 module.exports = app;
 
 // https://git.heroku.com/floating-wildwood-23496.git (origin)
-
-
-// const express = require("express");
-// const app = express();
-// const mongoose = require('mongoose');
-
-// const DB = 'mongodb+srv://mohammedramydaly:moha242mmed9336@cluster0.h2bdlvl.mongodb.net/?retryWrites=true&w=majority';
-
-// mongoose
-//     .connect(DB)
-//     .then(() => {
-//         console.log("Connection Successful");
-//     })
-//     .catch((e) => {
-//         console.log(e);
-//     });
-
-
-// app.get('/products', (req, res, next) => {
-//     res.json({ 'name': 'comunter', 'color': 'black', 'price':'123' })
-// })
-
-// const port = process.env.PORT || 3000;
-
-// app.listen(port, () => {
-//     console.log("it is working");
-// })
-
-// module.exports = app;
+// https://git.heroku.com/evening-river-27258.git
