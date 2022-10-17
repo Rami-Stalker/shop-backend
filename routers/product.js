@@ -48,8 +48,9 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
             userId: req.user,
             rating,
         };
-
-        product.ratings.push(ratingSchema);
+        
+        // add your new rating
+        product.ratings.push(ratingSchema); // like add in dart
         product = await product.save();
         res.json(product);
     } catch (e) {
