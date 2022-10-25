@@ -112,12 +112,12 @@ userRouter.post("/api/order", auth, async (req, res) => {
 });
 
 // get my order
-userRouter.get("api/orders/my",auth, async (req, res)=> {
+userRouter.get("/api/orders/me", auth, async (req, res) => {
     try {
-        const order = await Order.find({userId : req.user});
-        res.json(order);
+        const orders = await Order.find({ userId: req.user });
+        res.json(orders);
     } catch (e) {
-        res.status(500).json({error: e.message});
+        res.status(500).json({ error: e.message });
     }
 });
 
