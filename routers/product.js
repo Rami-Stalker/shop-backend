@@ -70,7 +70,7 @@ productRouter.get("/api/deal-of-day", auth, async (req, res) => {
             return aSum < bSum ? 1 : -1;
         });
 
-        res.json(products[0]);
+        res.json(products);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
