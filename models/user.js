@@ -39,10 +39,6 @@ const userSchema = mongoose.Schema({
                 type : Number,
                 required : true,
             },
-            time: {
-                type: Number,
-                require: true,
-            }
         }
     ],
 

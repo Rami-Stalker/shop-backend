@@ -13,7 +13,7 @@ userRouter.post("/api/add-to-cart", auth, async (req, res) => {
         let user = await User.findById(req.user);
 
         if (user.cart.length == 0) {
-            user.cart.push({ product, quantity: 1, time: new Date().getTime() });
+            user.cart.push({ product, quantity: 1 });
         } else {
             let isProductFound = false;
             for (let i = 0; i < user.cart.length; i++) {
