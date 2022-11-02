@@ -53,7 +53,7 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
 });
 
 // Get all your products
-productRouter.get("/user/get-products", auth, async (req, res) => {
+productRouter.get("/api/get-newest-products", auth, async (req, res) => {
     try {
         const products = await Product.find({});
         res.json(products);
@@ -62,7 +62,7 @@ productRouter.get("/user/get-products", auth, async (req, res) => {
     }
 });
 
-productRouter.get("/api/deal-of-day", auth, async (req, res) => {
+productRouter.get("/api/get-rating-products", auth, async (req, res) => {
     try {
         let products = await Product.find({});
 
