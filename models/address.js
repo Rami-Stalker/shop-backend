@@ -2,30 +2,30 @@ const mongoose = require("mongoose");
 
 const addressSchema = mongoose.Schema({
     address: {
-        required: true,
         type: String,
+        default: "",
     },
     addressType: {
-        required: true,
         type: String,
+        default: "",
     },
     contactPersonName: {
-        required: true,
         type: String,
+        default: "",
     },
     contactPersonNumber: {
         type: String,
-        required: true,
+        default: "",
     },
     latitude: {
         type: String,
-        required: true,
+        default: "",
     },
     longitude: {
         type: String,
-        required: true,
+        default: "",
     }
 });
 
-const Address = mongoose.model("Address", addressSchema);
-module.exports = Address;
+module.exports = addressSchema;
+

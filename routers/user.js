@@ -3,6 +3,7 @@ const { Product } = require("../models/product");
 const userRouter = express.Router();
 const auth = require("../middlewares/auth");
 const User = require("../models/user");
+const Address = require("../models/address");
 const Order = require("../models/order");
 
 // add to cart
@@ -64,9 +65,16 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
 // save user address
 userRouter.post("/api/save-user-address", auth, async (req, res) => {
     try {
-        const { address } = req.body;
+        const { address, addressType, contactPersonName, contactPersonNumber, latitude, longitude } = req.body;
         let user = await User.findById(req.user);
-        user.address = address;
+        user.address.push({
+            address,
+            addressType,
+            contactPersonName,
+            contactPersonNumber,
+            latitude,
+            longitude,
+        });
         user = await user.save();
         res.json(user);
     } catch (e) {

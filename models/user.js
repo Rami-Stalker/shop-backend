@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const { productSchema } = require("./product");
+const { addressSchema } = require("./address");
+
 
 const userSchema = mongoose.Schema({
     name: {
@@ -28,10 +30,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    address: {
-        type: String,
-        default: "",
-    },
+    address: addressSchema,
     type: {
         type: String,
         default: "user",
