@@ -30,11 +30,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    // address: addressSchema,
-    // type: {
-    //     type: String,
-    //     default: "user",
-    // },
+    address: addressSchema,
+    type: {
+        type: String,
+        default: "user",
+    },
     cart: [
         {
             product : productSchema,
