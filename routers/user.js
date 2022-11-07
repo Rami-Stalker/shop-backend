@@ -63,18 +63,12 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
 });
 
 // save user address
+// save user address
 userRouter.post("/api/save-user-address", auth, async (req, res) => {
     try {
-        const { address, addressType, contactPersonName, contactPersonNumber, latitude, longitude } = req.body;
+        const { address } = req.body;
         let user = await User.findById(req.user);
-        user.address.push({
-            address,
-            addressType,
-            contactPersonName,
-            contactPersonNumber,
-            latitude,
-            longitude,
-        });
+        user.address = address;
         user = await user.save();
         res.json(user);
     } catch (e) {
