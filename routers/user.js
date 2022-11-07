@@ -68,7 +68,7 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
     try {
         const { address } = req.body;
         let user = await User.findById(req.user);
-        user.address = address;
+        user.address = {address};
         user = await user.save();
         res.json(user);
     } catch (e) {
