@@ -63,18 +63,18 @@ userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
 });
 
 
-// // save user address
-// userRouter.post("/api/save-user-address", auth, async (req, res) => {
-//     try {
-//         const { address } = req.body;
-//         let user = await User.findById(req.user);
-//         user.address = address;
-//         user = await user.save();
-//         res.json(user);
-//     } catch (e) {
-//         res.status(500).json({ error: e.message });
-//     }
-// });
+// save user address
+userRouter.post("/api/save-user-address", auth, async (req, res) => {
+    try {
+        const { address } = req.body;
+        let user = await User.findById(req.user);
+        user.address = address;
+        user = await user.save();
+        res.json(user);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 // order product
 userRouter.post("/api/order", auth, async (req, res) => {
