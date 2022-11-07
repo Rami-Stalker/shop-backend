@@ -31,7 +31,8 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     address: {
-        type: addressSchema,
+        type: String,
+        default: "",
     },
     type: {
         type: String,
