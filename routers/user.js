@@ -7,7 +7,7 @@ const Address = require("../models/address");
 const Order = require("../models/order");
 
 // add to cart
-userRouter.post("/api/add-to-cart", auth, async (req, res) => {
+userRouter.post("/api/add-to-cart", async (req, res) => {
     try {
         const { id } = req.body;
         const product = await Product.findById(id);
