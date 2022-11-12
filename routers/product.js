@@ -62,7 +62,7 @@ productRouter.get("/api/get-newest-products", auth, async (req, res) => {
     }
 });
 
-productRouter.get("/api/get-rating-products", auth, async (req, res) => {
+productRouter.get("/api/get-rating-products", async (req, res) => {
     try {
         let products = await Product.find({});
 
