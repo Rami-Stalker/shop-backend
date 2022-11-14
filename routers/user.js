@@ -10,7 +10,7 @@ const Order = require("../models/order");
 userRouter.post("/api/add-to-cart", async (req, res) => {
     try {
         const { id , ord } = req.body;
-        const product = await Product.findById(id);
+        let product = await Product.findById(id);
         
         if (ord < product.quantity) {
             product.quantity -= ord;
