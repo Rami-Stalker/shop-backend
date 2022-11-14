@@ -13,7 +13,7 @@ userRouter.post("/api/add-to-cart", async (req, res) => {
         const product = await Product.findById(id);
         
         if (ord < product.quantity) {
-            product.quantity = product.quantity - ord;
+            product.quantity -= ord;
         }else {
             await Product.findByIdAndDelete(id);
         }
