@@ -89,15 +89,17 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
 // order product
 userRouter.post("/api/order", auth, async (req, res) => {
     try {
-        const { cart, totalPrice, address } = req.body;
-        let products = [];
+        const { products, userQuants, totalPrice, address } = req.body;
 
-        for (let i = 0; i < cart.length; i++) {
-            let product = await Product.findById(cart[i].product._id);
-            if (product.quantity >= cart[i].quantity) {
-                product.quantity -= cart[i].quantity;
-                products.push({ product, quantity: cart[i].quantity });
+        let productss = [];
+
+        for (let i = 0; i < products.length; i++) {
+            let product = await Product.findById(products[i]._id);
+
+            if (userQuants[i] <= products[i].quantity) {
+                products[i].quantity -= userQuants[i];
                 await product.save();
+                productss.push({ product, quantity: userQuants[i] });
             } else {
                 return res
                     .status(400)
@@ -105,12 +107,8 @@ userRouter.post("/api/order", auth, async (req, res) => {
             }
         }
 
-        let user = await User.findById(req.user);
-        user.cart = [];
-        user = await user.save();
-
         let order = new Order({
-            products,
+            productss,
             totalPrice,
             address,
             userId: req.user,
