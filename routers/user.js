@@ -89,12 +89,12 @@ userRouter.post("/api/save-user-address", auth, async (req, res) => {
 // order product
 userRouter.post("/api/order", auth, async (req, res) => {
     try {
-        const { products, userQuants, totalPrice, address } = req.body;
+        const { productsId, userQuants, totalPrice, address } = req.body;
 
         let productss = [];
 
-        for (let i = 0; i < products.length; i++) {
-            let product = await Product.findById(products[i]._id);
+        for (let i = 0; i < productsId.length; i++) {
+            let product = await Product.findById(productsId[i]);
 
         for (let j = 0; j < userQuants.length; j++) {
             if (product.quantity >= userQuants[j] ) {
