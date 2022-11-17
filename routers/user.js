@@ -99,11 +99,11 @@ userRouter.post("/api/order", auth, async (req, res) => {
         // }
 
         for (let i = 0; i < products.length; i++) {
-            let product = await Product.findById(products[i].id);
+            let product = await Product.findById("636bae1a60f7f23ae4263a74");
 
         for (let j = 0; j < userQuants.length; j++) {
-            if (userQuants[j] <= products[i].quantity) {
-                products[i].quantity -= userQuants[j];
+            if (userQuants[j] <= product.quantity) {
+                product.quantity -= userQuants[j];
                 await product.save();
                 productss.push({ product, quantity: userQuants[j] });
             } else {
