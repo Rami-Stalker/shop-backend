@@ -93,27 +93,27 @@ userRouter.post("/api/order", auth, async (req, res) => {
 
         let productss = [];
 
-        for (let i = 0; i < products.length; i++) {
-            let product = await Product.findById(products[i]._id);
-            productss.push({ product, quantity: userQuants[i] });
-        }
-
         // for (let i = 0; i < products.length; i++) {
         //     let product = await Product.findById(products[i]._id);
+        //     productss.push({ product, quantity: userQuants[i] });
+        // }
 
-        // for (let j = 0; j < userQuants.length; j++) {
-        //     if (userQuants[j] <= products[i].quantity) {
-        //         products[i].quantity -= userQuants[j];
-        //         await product.save();
-        //         productss.push({ product, quantity: userQuants[j] });
-        //     } else {
-        //         return res
-        //             .status(400)
-        //             .json({ msg: `${product.name} is out of stock!` });
-        //     }
+        for (let i = 0; i < products.length; i++) {
+            let product = await Product.findById(products[i].id);
+
+        for (let j = 0; j < userQuants.length; j++) {
+            if (userQuants[j] <= products[i].quantity) {
+                products[i].quantity -= userQuants[j];
+                await product.save();
+                productss.push({ product, quantity: userQuants[j] });
+            } else {
+                return res
+                    .status(400)
+                    .json({ msg: `${product.name} is out of stock!` });
+            }
             
-        // }
-        // }
+        }
+        }
 
         let order = new Order({
             productss,
