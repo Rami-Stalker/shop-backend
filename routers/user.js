@@ -93,13 +93,8 @@ userRouter.post("/api/order", auth, async (req, res) => {
 
         let productss = [];
 
-        // for (let i = 0; i < products.length; i++) {
-        //     let product = await Product.findById(products[i]._id);
-        //     productss.push({ product, quantity: userQuants[i] });
-        // }
-
         for (let i = 0; i < products.length; i++) {
-            let product = await Product.findById(products[i].id);
+            let product = await Product.findById(products[i]._id);
 
         for (let j = 0; j < userQuants.length; j++) {
             if (userQuants[j] <= product.quantity) {
