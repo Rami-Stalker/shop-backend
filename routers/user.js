@@ -93,7 +93,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
     try {
         const { productsId, userQuants, totalPrice, address } = req.body;
 
-        let productss = [];
+        let products = [];
 
         for (let i = 0; i < productsId.length; i++) {
             let product = await Product.findById(productsId[i]);
@@ -101,7 +101,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
         for (let j = 0; j < userQuants.length; j++) {
             if (product.quantity >= userQuants[j] ) {
                 product.quantity -= userQuants[j];
-                productss.push({ product, quantity: userQuants[j] });
+                products.push({ product, quantity: userQuants[j] });
                 await product.save();
             } else {
                 return res
@@ -113,7 +113,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
         }
 
         let order = new Order({
-            productss,
+            products,
             totalPrice,
             address,
             userId: req.user,
