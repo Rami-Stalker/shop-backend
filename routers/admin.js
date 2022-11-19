@@ -44,6 +44,22 @@ adminRouter.post("/admin/delete-product", admin, async (req, res) => {
     }
 });
 
+// Update the product
+adminRouter.post("/admin/update-product", admin, async (req, res) => {
+    try {
+        const {id, name, description, price, quantity } = req.body;
+        let product = await Product.findById(id);
+        product.name = name,
+        product.description = description,
+        product.price = price,
+        product.quantity = quantity,
+        await product.save();
+        res.json(product);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 // get all orders
 adminRouter.get("/admin/get-orders", admin, async (req, res) => {
     try {
