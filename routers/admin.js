@@ -4,7 +4,7 @@ const admin = require("../middlewares/admin");
 const Order = require("../models/order");
 const { Product } = require("../models/product");
 
-// Add product
+// add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
     try {
         const { name, description, images, quantity, price, category } = req.body;
@@ -23,7 +23,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
     }
 });
 
-// Get all your products
+// get all products
 adminRouter.get("/admin/get-products", admin, async (req, res) => {
     try {
         const products = await Product.find({});
@@ -33,7 +33,7 @@ adminRouter.get("/admin/get-products", admin, async (req, res) => {
     }
 });
 
-// Delete the product
+// delete product
 adminRouter.post("/admin/delete-product", admin, async (req, res) => {
     try {
         const { id } = req.body;
@@ -44,7 +44,7 @@ adminRouter.post("/admin/delete-product", admin, async (req, res) => {
     }
 });
 
-// Update the product
+// update product
 adminRouter.post("/admin/update-product", admin, async (req, res) => {
     try {
         const {id, name, description, price, quantity } = req.body;
@@ -70,12 +70,24 @@ adminRouter.get("/admin/get-orders", admin, async (req, res) => {
     }
 });
 
+// change order
 adminRouter.post("/admin/change-order-status", admin, async (req, res) => {
     try {
         const { id, status } = req.body;
         let order = await Order.findById(id);
         order.status = status,
             order = await order.save();
+        res.json(order);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// delete order
+adminRouter.post("/admin/delete-order", admin, async (req, res) => {
+    try {
+        const { id } = req.body;
+        let order = await Order.findByIdAndDelete(id);
         res.json(order);
     } catch (e) {
         res.status(500).json({ error: e.message });

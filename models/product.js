@@ -18,7 +18,7 @@ const productSchema = mongoose.Schema({
             required: true,
         },
     ],
-    quantity: { // الكمية المتبقية من المنتج
+    quantity: {
         type: Number,
         required: true,
     },
