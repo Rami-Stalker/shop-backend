@@ -102,11 +102,11 @@ userRouter.post("/api/order", auth, async (req, res) => {
             if (product.quantity >= userQuants[j] ) {
                 product.quantity -= userQuants[j];
                 products.push({ product, quantity: userQuants[j] });
-                await product.save();
+                product = await product.save();
             } else {
                 product.quantity = 0;
                 products.push({ product, quantity: product.quantity });
-                await product.save();
+                product = await product.save();
             }
             
         }

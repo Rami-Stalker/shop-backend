@@ -53,7 +53,7 @@ adminRouter.post("/admin/update-product", admin, async (req, res) => {
         product.description = description,
         product.price = price,
         product.quantity = quantity,
-        await product.save();
+        product = await product.save();
         res.json(product);
     } catch (e) {
         res.status(500).json({ error: e.message });
