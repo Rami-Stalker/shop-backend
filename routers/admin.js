@@ -14,7 +14,6 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
             images,
             quantity,
             price,
-            oldPrice: 0,
             category,
         });
         product = await product.save();

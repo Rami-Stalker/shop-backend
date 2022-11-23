@@ -25,8 +25,8 @@ const userSchema = mongoose.Schema({
         type: String,
     },
     phone: {
+        required: true,
         type: String,
-        default: "",
     },
     address: {
         type: String,
@@ -36,15 +36,6 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "user",
     },
-    cart: [
-        {
-            product: productSchema,
-            quantity: {
-                type: Number,
-                required: true,
-            },
-        },
-    ],
 });
 
 const User = mongoose.model("User", userSchema);
