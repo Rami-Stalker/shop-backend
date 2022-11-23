@@ -14,6 +14,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
             images,
             quantity,
             price,
+            oldPrice: 0,
             category,
         });
         product = await product.save();
@@ -49,6 +50,9 @@ adminRouter.post("/admin/update-product", admin, async (req, res) => {
     try {
         const {id, name, description, price, quantity } = req.body;
         let product = await Product.findById(id);
+        if (price < product.price) {
+            product.oldPrice = product.price;
+        }
         product.name = name,
         product.description = description,
         product.price = price,
