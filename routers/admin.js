@@ -3,6 +3,12 @@ const adminRouter = express.Router();
 const admin = require("../middlewares/admin");
 const Order = require("../models/order");
 const { Product } = require("../models/product");
+const FCM = require("fcm-node");
+const { response } = require("express");
+const auth = require("../middlewares/auth");
+const User = require("../models/user");
+
+const SERVER_KEY = "AAAAA71ZrlU:APA91bGrVFXm6Rm6G0jQDvT0E3zUQSKhVWZK_LzXeo6V46cbSCx5mCv-oC3igHHLJ57kb-dpvKEszl6S2KHHJiZM28FZRbOcTGQsgf-2EuEQERRLbZL9AI1aaKm00m-LAZDzP1xzdKwE";
 
 // add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
@@ -85,6 +91,48 @@ adminRouter.post("/admin/change-order-status", admin, async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 });
+
+// adminRouter.post("/admin/fcm", auth, async (req, res) => {
+//     try {
+        
+//         const { topics, title, body, userId } = req.body;
+
+//         const user = User.findById(userId);
+
+//         // const firebaseToken = user.firebaseToken;
+
+//         let fcm = new FCM(SERVER_KEY);
+
+//         let message = {
+//             to: "/topics/" + topics,
+//             //or
+//             // to: user.firebaseToken,
+//             notification : {
+//                 title: title,
+//                 body: body,
+//                 sound: 'default',
+//                 "click_action": "FCM_BLUGIN_ACTIVITY",
+//                 "icon": "fcm_push_icon",
+//             },
+//             data: req.body.data,
+//         }
+
+//         fcm.send(message, (err, response) => {
+//             if (err) {
+//                 res.status(500).json({ error: err });
+//             } 
+//             else{
+//                 res.json(response);
+//             }
+//         });
+
+
+//     } catch (e) {
+//         res.status(500).json({ error: e.message });
+//     }
+// });
+
+
 
 // delete order
 adminRouter.post("/admin/delete-order", admin, async (req, res) => {
