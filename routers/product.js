@@ -12,8 +12,6 @@ productRouter.get("/api/products/", async (req, res) => {
     }
 });
 
-// create a get request to search products and get them
-// /api/products/search/i
 productRouter.get("/api/products/search/:name", async (req, res) => {
     try {
         const products = await Product.find({

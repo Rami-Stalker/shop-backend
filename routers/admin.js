@@ -8,8 +8,6 @@ const { response } = require("express");
 const auth = require("../middlewares/auth");
 const User = require("../models/user");
 
-const SERVER_KEY = "AAAAA71ZrlU:APA91bGrVFXm6Rm6G0jQDvT0E3zUQSKhVWZK_LzXeo6V46cbSCx5mCv-oC3igHHLJ57kb-dpvKEszl6S2KHHJiZM28FZRbOcTGQsgf-2EuEQERRLbZL9AI1aaKm00m-LAZDzP1xzdKwE";
-
 // add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
     try {
