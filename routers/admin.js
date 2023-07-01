@@ -51,16 +51,16 @@ adminRouter.post("/admin/delete-product", admin, async (req, res) => {
 // update product
 adminRouter.post("/admin/update-product", admin, async (req, res) => {
     try {
-        const {id, name, description, price, quantity } = req.body;
+        const { id, name, description, price, quantity } = req.body;
         let product = await Product.findById(id);
         if (price < product.price) {
             product.oldPrice = product.price;
         }
         product.name = name,
-        product.description = description,
-        product.price = price,
-        product.quantity = quantity,
-        product = await product.save();
+            product.description = description,
+            product.price = price,
+            product.quantity = quantity,
+            product = await product.save();
         res.json(product);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -92,7 +92,7 @@ adminRouter.post("/admin/change-order-status", admin, async (req, res) => {
 
 // adminRouter.post("/admin/fcm", auth, async (req, res) => {
 //     try {
-        
+
 //         const { topics, title, body, userId } = req.body;
 
 //         const user = User.findById(userId);

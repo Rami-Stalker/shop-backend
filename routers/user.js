@@ -49,7 +49,7 @@ userRouter.post("/api/update-product-quantity", async (req, res) => {
     }
 });
 
-// save user address
+// save user data
 userRouter.post("/api/save-user-data", auth, async (req, res) => {
     try {
         const { address , name , phone } = req.body;
@@ -65,7 +65,7 @@ userRouter.post("/api/save-user-data", auth, async (req, res) => {
 });
 
 // order product
-userRouter.post("/api/order", auth, async (req, res) => {
+userRouter.post("/api/add-order", auth, async (req, res) => {
     try {
         const { productsId, userQuants, totalPrice, address } = req.body;
 
@@ -103,7 +103,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
 });
 
 // get my order
-userRouter.get("/api/orders/me", auth, async (req, res) => {
+userRouter.get("/api/get-user-Orders", auth, async (req, res) => {
     try {
         const orders = await Order.find({ userId: req.user });
         res.json(orders);
