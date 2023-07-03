@@ -74,18 +74,15 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
         for (let i = 0; i < productsId.length; i++) {
             let product = await Product.findById(productsId[i]);
 
-        for (let j = 0; j < userQuants.length; j++) {
-            if (product.quantity >= userQuants[j] ) {
-                product.quantity -= userQuants[j];
-                products.push({ product, quantity: userQuants[j] });
+            if (product.quantity >= userQuants[i] ) {
+                product.quantity -= userQuants[i];
+                products.push({ product, quantity: userQuants[i] });
                 product = await product.save();
             } else {
                 product.quantity = 0;
                 products.push({ product, quantity: product.quantity });
                 product = await product.save();
             }
-            
-        }
         }
 
         let order = new Order({
@@ -102,7 +99,7 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
     }
 });
 
-// get my order
+// get user order
 userRouter.get("/api/get-user-Orders", auth, async (req, res) => {
     try {
         const orders = await Order.find({ userId: req.user });

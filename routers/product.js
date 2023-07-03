@@ -53,7 +53,14 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
 // Get all your products
 productRouter.get("/api/get-newest-products", auth, async (req, res) => {
     try {
-        const products = await Product.find({});
+        let products = [];
+        const productss = await Product.find({});
+
+        for (let i = 0; i < productss.length; i++) {
+            if (productss[i].quantity != 0) {
+                products.push(productss[i]);
+            }
+        }
         res.json(products);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -62,7 +69,14 @@ productRouter.get("/api/get-newest-products", auth, async (req, res) => {
 
 productRouter.get("/api/get-rating-products", async (req, res) => {
     try {
-        let products = await Product.find({});
+        let products = [];
+        const productss = await Product.find({});
+
+        for (let i = 0; i < productss.length; i++) {
+            if (productss[i].quantity != 0) {
+                products.push(productss[i]);
+            }
+        }
 
         products = products.sort((a, b) => {
             let aSum = 0;
