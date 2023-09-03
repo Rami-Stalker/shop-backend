@@ -1,6 +1,8 @@
 const express = require("express");
 const productRouter = express.Router();
 const admin = require("../middlewares/admin");
+const auth = require("../middlewares/auth");
+
 const { Product } = require("../models/product");
 
 // Get products
@@ -136,30 +138,31 @@ productRouter.post("/delete-product", admin, async (req, res) => {
     }
 });
 
+productRouter.post("/rate-product", auth, async (req, res) => {
+    try {
+        const { productId, rating } = req.body;
+        let product = await Product.findById(productId);
+
+        for (let i = 0; i < product.ratings.length; i++) {
+            if (product.ratings[i].userId == req.user) {
+                product.ratings.splice(i, 1); // index , how mutch element to remove .
+                break;
+            }
+        }
+
+        const ratingSchema = {
+            userId: req.user,
+            rating,
+        };
+
+        product.ratings.push(ratingSchema);
+        product = await product.save();
+        res.json(product);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+
 module.exports = productRouter;
 
-// create a post request route to rate the product.
-// productRouter.post("/api/get-rating-products", async (req, res) => {
-//     try {
-//         const { id, rating } = req.body;
-//         let product = await Product.findById(id);
-
-//         for (let i = 0; i < product.ratings.length; i++) {
-//             if (product.ratings[i].userId == req.user) {
-//                 product.ratings.splice(i, 1);
-//                 break;
-//             }
-//         }
-
-//         const ratingSchema = {
-//             userId: req.user,
-//             rating,
-//         };
-
-//         product.ratings.push(ratingSchema);
-//         product = await product.save();
-//         res.json(product);
-//     } catch (e) {
-//         res.status(500).json({ error: e.message });
-//     }
-// });

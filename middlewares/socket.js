@@ -2,7 +2,6 @@
 const { ADD_PRODUCT, CHANGE_ORDER_STATUS } = require('../actions/socketio');
 
 const socketIOEvents = (io) => {
-
     // Event fired whenever a new client connects
     io.on('connection', (socket) => {
         console.log('A user connected');

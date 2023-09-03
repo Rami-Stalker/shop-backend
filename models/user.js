@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    photo: {
+    image: {
         required: true,
         type: String,
-        trim: true,
+    },
+    blurHash: {
+        type: String,
+        default: "",
     },
     name: {
         required: true,
